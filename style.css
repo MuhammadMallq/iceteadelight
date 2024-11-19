@@ -37,7 +37,7 @@ header .logo {
 /* Hero Section */
 .hero {
     text-align: center;
-    background: url('ice-tea-bg.jpg') no-repeat center center/cover;
+    background: url('gambar/icetea.jpg') no-repeat center center/cover;
     color: white;
     padding: 4rem 1rem;
 }
@@ -90,4 +90,13 @@ header .logo {
     margin-top: 0.5rem;
     font-weight: bold;
     color: #ff9933;
+}
+
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background: #333;
+    color: white;
 }
