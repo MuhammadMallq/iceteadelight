@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu - Ice Tea Delight</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylemenu.css">
 </head>
 <body>
     <header>
@@ -25,9 +25,9 @@
         <div class="menu-grid">
             <!-- Menu Item 1 -->
             <div class="menu-item">
-                <img src="images/ice-tea-lemon.jpg" alt="Ice Tea Lemon Klasik">
+                <img src="images/ice-tea-lemon.jpg" alt="Ice Tea Lemon Klasik" class="menu-img">
                 <h3>Ice Tea Lemon Klasik</h3>
-                <p>Campuran teh hitam segar dengan lemon.</p>
+                <p>Campuran teh hitam segar dengan lemon, menyegarkan dan penuh rasa.</p>
                 <span>Rp35.000</span>
                 <div class="quantity-control">
                     <button class="btn-minus">-</button>
@@ -38,9 +38,9 @@
 
             <!-- Menu Item 2 -->
             <div class="menu-item">
-                <img src="images/ice-tea-peach.jpg" alt="Ice Tea Peach">
+                <img src="images/ice-tea-peach.jpg" alt="Ice Tea Peach" class="menu-img">
                 <h3>Ice Tea Peach</h3>
-                <p>Rasa manis dan segar buah persik.</p>
+                <p>Rasa manis dan segar buah persik yang cocok untuk segala suasana.</p>
                 <span>Rp40.000</span>
                 <div class="quantity-control">
                     <button class="btn-minus">-</button>
@@ -51,9 +51,9 @@
 
             <!-- Menu Item 3 -->
             <div class="menu-item">
-                <img src="images/mojito-teh-hijau.jpg" alt="Mojito Teh Hijau">
+                <img src="images/mojito-teh-hijau.jpg" alt="Mojito Teh Hijau" class="menu-img">
                 <h3>Mojito Teh Hijau</h3>
-                <p>Kombinasi teh hijau dengan sensasi mint.</p>
+                <p>Kombinasi teh hijau dengan sensasi mint yang menyegarkan.</p>
                 <span>Rp45.000</span>
                 <div class="quantity-control">
                     <button class="btn-minus">-</button>
@@ -64,9 +64,9 @@
 
             <!-- Menu Item 4 -->
             <div class="menu-item">
-                <img src="images/ice-tea-berry.jpg" alt="Berry Ice Tea">
+                <img src="images/ice-tea-berry.jpg" alt="Berry Ice Tea" class="menu-img">
                 <h3>Berry Ice Tea</h3>
-                <p>Teh segar dengan campuran buah beri.</p>
+                <p>Teh segar dengan campuran buah beri yang kaya akan rasa.</p>
                 <span>Rp50.000</span>
                 <div class="quantity-control">
                     <button class="btn-minus">-</button>
@@ -77,9 +77,9 @@
 
             <!-- Menu Item 5 -->
             <div class="menu-item">
-                <img src="images/ice-tea-matcha.jpg" alt="Matcha Ice Tea">
+                <img src="images/ice-tea-matcha.jpg" alt="Matcha Ice Tea" class="menu-img">
                 <h3>Matcha Ice Tea</h3>
-                <p>Rasa khas teh hijau Jepang dengan susu segar.</p>
+                <p>Rasa khas teh hijau Jepang dengan susu segar yang menenangkan.</p>
                 <span>Rp55.000</span>
                 <div class="quantity-control">
                     <button class="btn-minus">-</button>
@@ -90,7 +90,7 @@
 
             <!-- Menu Item 6 -->
             <div class="menu-item">
-                <img src="images/ice-tea-tropical.jpg" alt="Tropical Ice Tea">
+                <img src="images/ice-tea-tropical.jpg" alt="Tropical Ice Tea" class="menu-img">
                 <h3>Tropical Ice Tea</h3>
                 <p>Campuran teh segar dengan rasa tropis nanas dan kelapa.</p>
                 <span>Rp45.000</span>
@@ -104,8 +104,18 @@
 
         <!-- Checkout Section -->
         <div class="checkout">
-            <button class="btn-checkout">Checkout</button>
+            <button class="btn-checkout" onclick="showCheckoutPopup()">Checkout</button>
             <div id="total-container">Total: Rp0</div>
+        </div>
+
+        <!-- Checkout Popup -->
+        <div id="checkout-popup" class="popup">
+            <div class="popup-content">
+                <h3>Checkout</h3>
+                <p id="popup-total">Total: Rp0</p>
+                <button onclick="closeCheckoutPopup()" class="btn-close">Tutup</button>
+                <button class="btn-submit">Lanjutkan Pembayaran</button>
+            </div>
         </div>
     </section>
 

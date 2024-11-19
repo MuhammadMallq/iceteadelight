@@ -1,55 +1,75 @@
-// Script to manage quantity and total price
-document.addEventListener('DOMContentLoaded', () => {
-    const menuItems = [
-        { name: "Ice Tea Lemon Klasik", price: 35000 },
-        { name: "Ice Tea Peach", price: 40000 },
-        { name: "Mojito Teh Hijau", price: 45000 },
-        { name: "Berry Ice Tea", price: 50000 },
-        { name: "Matcha Ice Tea", price: 55000 },
-        { name: "Tropical Ice Tea", price: 45000 },
-    ];
+// Menangani perubahan jumlah item
+const updateQuantity = () => {
+    const quantityControls = document.querySelectorAll('.quantity-control');
 
-    let quantities = [0, 0, 0];
+    quantityControls.forEach(control => {
+        const btnMinus = control.querySelector('.btn-minus');
+        const btnPlus = control.querySelector('.btn-plus');
+        const quantity = control.querySelector('.quantity');
 
-    const updateTotal = () => {
-        const totalContainer = document.getElementById('total-container');
-        let total = quantities.reduce((sum, qty, idx) => sum + qty * menuItems[idx].price, 0);
-        totalContainer.textContent = `Total: Rp${total.toLocaleString('id-ID')}`;
-    };
-
-    const setupButtons = () => {
-        const buttonsMinus = document.querySelectorAll('.btn-minus');
-        const buttonsPlus = document.querySelectorAll('.btn-plus');
-        const quantityDisplays = document.querySelectorAll('.quantity');
-
-        buttonsMinus.forEach((btn, idx) => {
-            btn.addEventListener('click', () => {
-                if (quantities[idx] > 0) {
-                    quantities[idx]--;
-                    quantityDisplays[idx].textContent = quantities[idx];
-                    updateTotal();
-                }
-            });
+        // Penanganan tombol minus
+        btnMinus.addEventListener('click', () => {
+            let currentQuantity = parseInt(quantity.textContent);
+            if (currentQuantity > 0) {
+                quantity.textContent = currentQuantity - 1;
+            }
+            updateTotal();
         });
 
-        buttonsPlus.forEach((btn, idx) => {
-            btn.addEventListener('click', () => {
-                quantities[idx]++;
-                quantityDisplays[idx].textContent = quantities[idx];
-                updateTotal();
-            });
+        // Penanganan tombol plus
+        btnPlus.addEventListener('click', () => {
+            let currentQuantity = parseInt(quantity.textContent);
+            quantity.textContent = currentQuantity + 1;
+            updateTotal();
         });
-    };
+    });
+};
 
-    const setupCheckout = () => {
-        const checkoutButton = document.querySelector('.btn-checkout');
-        checkoutButton.addEventListener('click', () => {
-            alert("Terima kasih telah memesan! Total pesanan Anda adalah Rp" + 
-                quantities.reduce((sum, qty, idx) => sum + qty * menuItems[idx].price, 0).toLocaleString('id-ID'));
-        });
-    };
+// Update total harga
+function updateTotal() {
+    let total = 0;
+    const items = document.querySelectorAll('.menu-item');
+    items.forEach(item => {
+        const quantity = parseInt(item.querySelector('.quantity').textContent);
+        const price = parseInt(item.querySelector('span').textContent.replace('Rp', '').replace('.', ''));
+        total += quantity * price;
+    });
+    document.getElementById('total-container').textContent = `Total: Rp${total.toLocaleString()}`;
+    document.getElementById('popup-total').textContent = `Total: Rp${total.toLocaleString()}`;
+}
 
-    setupButtons();
-    setupCheckout();
-    updateTotal();
+// Memanggil fungsi updateQuantity saat halaman selesai dimuat
+window.addEventListener('DOMContentLoaded', (event) => {
+    updateQuantity();
 });
+
+
+// Update total and show checkout pop-up
+function updateTotal() {
+    let total = 0;
+    const items = document.querySelectorAll('.menu-item');
+    items.forEach(item => {
+        const quantity = item.querySelector('.quantity').textContent;
+        const price = parseInt(item.querySelector('span').textContent.replace('Rp', '').replace('.', ''));
+        total += quantity * price;
+    });
+    document.getElementById('total-container').textContent = `Total: Rp${total.toLocaleString()}`;
+    document.getElementById('popup-total').textContent = `Total: Rp${total.toLocaleString()}`;
+}
+
+// Show checkout pop-up
+function showCheckoutPopup() {
+    updateTotal();
+    document.getElementById('checkout-popup').style.display = 'flex';
+}
+
+// Close checkout pop-up
+function closeCheckoutPopup() {
+    document.getElementById('checkout-popup').style.display = 'none';
+}
+
+// Fungsi untuk mengirim pesanan (misalnya hanya menutup pop-up untuk demonstrasi)
+function submitOrder() {
+    alert('Pesanan Anda telah dikirim!');
+    closeCheckoutPopup(); 
+}
