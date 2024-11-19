@@ -45,9 +45,12 @@ header .nav-links a.active {
 /* Hero Section */
 .hero {
     text-align: center;
-    background: url('gambar/icetea.jpg') no-repeat center center/cover;
+    background: url('gambar/icetea.jpg') no-repeat center center/cover; /* Update the path if the image is inside a folder like 'images' */
     color: white;
     padding: 10.6rem 1rem;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
 }
 
 .hero h1 {
@@ -62,6 +65,8 @@ header .nav-links a.active {
     text-decoration: none;
     border-radius: 5px;
 }
+
+
 
 footer {
     text-align: center;
